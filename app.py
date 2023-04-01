@@ -96,7 +96,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
     with gr.Row(scale=1).style(equal_height=True):
         with gr.Column(scale=5):
             with gr.Row(scale=1):
-                chatbot = gr.Chatbot(elem_id="chuanhu_chatbot").style(height="80%")
+                chatbot = gr.Chatbot(elem_id="chuanhu_chatbot").style(height="100%")
             with gr.Row(scale=1):
                 with gr.Column(scale=12):
                     user_input = gr.Textbox(
