@@ -61,18 +61,9 @@ ol:not(.options), ul:not(.options) {
     }
 }
 /* 屏幕宽度大于等于500px的设备 */
-@media screen and (min-width: 500px) {
-    #chuanhu_chatbot {
-        height: 280px;
+#chuanhu_chatbot {
+        height: 80%;
     }
-
-}
-/* 屏幕宽度小于500px的设备 */
-@media screen and (max-width: 499px) {
-    #chuanhu_chatbot {
-        height: 220px;
-    }
-}
 /* 对话气泡 */
 [class *= "message"] {
     border-radius: var(--radius-xl) !important;
