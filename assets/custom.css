@@ -62,7 +62,7 @@ ol:not(.options), ul:not(.options) {
 }
 /* 屏幕宽度大于等于500px的设备 */
 #chuanhu_chatbot {
-        height: 80%;
+        height: 100%;
     }
 /* 对话气泡 */
 [class *= "message"] {
