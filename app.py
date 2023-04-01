@@ -214,6 +214,6 @@ demo.title = "Baize"
 
 if __name__ == "__main__":
     reload_javascript()
-    demo.queue(concurrency_count=CONCURRENT_COUNT).launch(
+    demo.queue(concurrency_count=1).launch(
         share=False, favicon_path="./assets/favicon.ico", inbrowser=True
     )
