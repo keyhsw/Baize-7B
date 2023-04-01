@@ -74,10 +74,10 @@ ol:not(.options), ul:not(.options) {
 /* 屏幕宽度小于500px的设备 */
 @media screen and (max-width: 499px) {
     #chuanhu_chatbot {
-        height: calc(100vh - 220px);
+        height: calc(100vh - 140px);
     }
     #chuanhu_chatbot .wrap {
-        max-height: calc(100vh - 220px - var(--line-sm)*1rem - 2*var(--block-label-margin) );
+        max-height: calc(100vh - 140 - var(--line-sm)*1rem - 2*var(--block-label-margin) );
     }
 }
 /* 对话气泡 */
