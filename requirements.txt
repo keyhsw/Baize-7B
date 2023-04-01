@@ -12,4 +12,4 @@ langchain
 markdown
 markdown2
 torch
-
+git+https://github.com/huggingface/peft.git
