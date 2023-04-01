@@ -67,17 +67,11 @@ ol:not(.options), ul:not(.options) {
     #chuanhu_chatbot {
         height: calc(100vh - 280px);
     }
-    #chuanhu_chatbot .wrap {
-        max-height: calc(100vh - 280px - var(--line-sm)*1rem - 2*var(--block-label-margin) );
-    }
 }
 /* 屏幕宽度小于500px的设备 */
 @media screen and (max-width: 499px) {
     #chuanhu_chatbot {
         height: calc(100vh - 140px);
-    }
-    #chuanhu_chatbot .wrap {
-        max-height: calc(100vh - 140 - var(--line-sm)*1rem - 2*var(--block-label-margin) );
     }
 }
 /* 对话气泡 */
