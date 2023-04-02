@@ -27,7 +27,10 @@ def predict(text,
             max_context_length_tokens,):
     if text=="":
         return history,history,"Empty Context"
-
+    try:
+        model
+    except:
+        return [[text,"No Model Found"]],[],"No Model Found"
     inputs = generate_prompt_with_history(text,history,tokenizer,max_length=max_context_length_tokens)
     if inputs is False:
         return [[x[0],convert_to_markdown(x[1])] for x in history]+[[text,"Sorry, the input is too long."]],history,"Generate Fail"
