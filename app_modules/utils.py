@@ -352,12 +352,13 @@ def load_tokenizer_and_model(base_model,adapter_model,load_8bit=False):
         )
     else:
         model = LlamaForCausalLM.from_pretrained(
-            base_model, device_map={"": device}, low_cpu_mem_usage=True
+            base_model, device_map={"": device}, low_cpu_mem_usage=True,torch_dtype=torch.float16
         )
         model = PeftModel.from_pretrained(
             model,
             adapter_model,
             device_map={"": device},
+            torch_dtype=torch.float16
         )
 
     if not load_8bit:
