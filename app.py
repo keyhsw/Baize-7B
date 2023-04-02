@@ -107,8 +107,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     ).style(container=False)
                 with gr.Column(min_width=70, scale=1):
                     submitBtn = gr.Button("Send")
-                with gr.Column(min_width=70, scale=1):  
-                    cancelBtn = gr.Button("Stop")
+
                   
             with gr.Row(scale=1):
                 emptyBtn = gr.Button(
@@ -188,9 +187,8 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
     )
  
     # Chatbot
-    cancelBtn.click(cancel_outputing, [], [ status_display])
     transfer_input_args = dict(
-        fn=transfer_input, inputs=[user_input], outputs=[user_question, user_input, submitBtn, cancelBtn], show_progress=True
+        fn=transfer_input, inputs=[user_input], outputs=[user_question, user_input, submitBtn], show_progress=True
     )
 
     user_input.submit(**transfer_input_args).then(**predict_args)
