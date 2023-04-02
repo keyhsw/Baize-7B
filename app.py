@@ -57,7 +57,7 @@ def predict(text,
                     return
                 except:
                     pass
-    print(prompt)
+    print(text)
     print(x)
     print("="*80)
     try:
@@ -139,7 +139,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     max_length_tokens = gr.Slider(
                         minimum=0,
                         maximum=512,
-                        value=512,
+                        value=256,
                         step=8,
                         interactive=True,
                         label="Max Generation Tokens",
