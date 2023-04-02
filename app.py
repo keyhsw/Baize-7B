@@ -15,7 +15,7 @@ logging.basicConfig(
 
 base_model = "decapoda-research/llama-7b-hf"
 adapter_model = "project-baize/baize-lora-7B"
-tokenizer,model,device = load_tokenizer_and_model(base_model,adapter_model)
+#tokenizer,model,device = load_tokenizer_and_model(base_model,adapter_model)
 
 
 def predict(text,
