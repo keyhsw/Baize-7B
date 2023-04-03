@@ -107,6 +107,8 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     ).style(container=False)
                 with gr.Column(min_width=70, scale=1):
                     submitBtn = gr.Button("Send")
+                with gr.Column(min_width=70, scale=1):
+                    cancelBtn = gr.Button("Stop")
 
                   
             with gr.Row(scale=1):
@@ -191,9 +193,9 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
         fn=transfer_input, inputs=[user_input], outputs=[user_question, user_input, submitBtn], show_progress=True
     )
 
-    user_input.submit(**transfer_input_args).then(**predict_args)
+    predict_event1 = user_input.submit(**transfer_input_args).then(**predict_args)
 
-    submitBtn.click(**transfer_input_args).then(**predict_args)
+    predict_event2 = submitBtn.click(**transfer_input_args).then(**predict_args)
 
     emptyBtn.click(
         reset_state,
@@ -202,7 +204,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
     )
     emptyBtn.click(**reset_args)
 
-    retryBtn.click(**retry_args)
+    predict_event3 = retryBtn.click(**retry_args)
 
     delLastBtn.click(
         delete_last_conversation,
@@ -210,11 +212,18 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
         [chatbot, history, status_display],
         show_progress=True,
     )
-
+    cancelBtn.click(
+        cancel_outputing, [], [status_display], 
+        cancels=[
+            predict_event1,predict_event2,predict_event3
+        ]
+    )    
 demo.title = "Baize"
 
-if __name__ == "__main__":
-    reload_javascript()
-    demo.queue(concurrency_count=1).launch(
-        share=False, favicon_path="./assets/favicon.ico", inbrowser=True
-    )
+demo.queue(
+    concurrency_count=1,
+    max_size=100,
+).launch(
+    max_threads=5,
+    server_name="0.0.0.0",
+)
