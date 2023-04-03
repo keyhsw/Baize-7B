@@ -208,8 +208,6 @@ def reset_textbox():
     return gr.update(value=""),""
 
 def cancel_outputing():
-    shared_state.interrupt()
-    textbox = reset_textbox()
     return "Stop Done"
 
 def transfer_input(inputs):
