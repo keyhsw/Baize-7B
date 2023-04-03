@@ -150,8 +150,8 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     )
                     max_context_length_tokens = gr.Slider(
                         minimum=0,
-                        maximum=1536,
-                        value=1024,
+                        maximum=1024,
+                        value=512,
                         step=128,
                         interactive=True,
                         label="Max History Tokens",
