@@ -224,7 +224,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
 demo.title = "Baize"
 
 demo.queue(
-    concurrency_count=1,
+    concurrency_count=4,
     max_size=100,
 ).launch(
     max_threads=5,
