@@ -111,9 +111,6 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     ).style(container=False)
                 with gr.Column(min_width=70, scale=1):
                     submitBtn = gr.Button("Send")
-                with gr.Column(min_width=70, scale=1):
-                    cancelBtn = gr.Button("Stop")
-
                   
             with gr.Row(scale=1):
                 emptyBtn = gr.Button(
@@ -216,12 +213,12 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
         [chatbot, history, status_display],
         show_progress=True,
     )
-    cancelBtn.click(
-        cancel_outputing, [], [status_display], 
-        cancels=[
-            predict_event1,predict_event2,predict_event3
-        ]
-    )    
+    #cancelBtn.click(
+    #    cancel_outputing, [], [status_display], 
+    #    cancels=[
+    #        predict_event1,predict_event2,predict_event3
+    #    ]
+    #)    
 demo.title = "Baize"
 
 demo.queue(concurrency_count=1,).launch()
