@@ -17,6 +17,7 @@ base_model = "decapoda-research/llama-7b-hf"
 adapter_model = "project-baize/baize-lora-7B"
 tokenizer,model,device = load_tokenizer_and_model(base_model,adapter_model)
 
+global total_cont
 total_cont = 0
 def predict(text,
             chatbot,
