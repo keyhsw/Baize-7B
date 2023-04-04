@@ -124,14 +124,14 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     gr.Markdown("# Parameters")
                     top_p = gr.Slider(
                         minimum=-0,
-                        maximum=0.95,
+                        maximum=1.0,
                         value=0.95,
                         step=0.05,
                         interactive=True,
                         label="Top-p",
                     )
                     temperature = gr.Slider(
-                        minimum=-0,
+                        minimum=0.1,
                         maximum=2.0,
                         value=1,
                         step=0.1,
