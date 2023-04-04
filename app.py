@@ -223,4 +223,4 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
     #)    
 demo.title = "Baize"
 
-demo.queue(concurrency_count=2).launch()
+demo.queue(concurrency_count=1).launch()
