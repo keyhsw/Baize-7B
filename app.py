@@ -33,7 +33,7 @@ def predict(text,
     except:
         yield [[text,"No Model Found"]],[],"No Model Found"
         return
-    torch.cuda.empty_cache()
+
     inputs = generate_prompt_with_history(text,history,tokenizer,max_length=max_context_length_tokens)
     if inputs is False:
         yield chatbot+[[text,"Sorry, the input is too long."]],history,"Generate Fail"
