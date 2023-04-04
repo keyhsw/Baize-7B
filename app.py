@@ -124,7 +124,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                     gr.Markdown("# Parameters")
                     top_p = gr.Slider(
                         minimum=-0,
-                        maximum=1.0,
+                        maximum=0.95,
                         value=0.95,
                         step=0.05,
                         interactive=True,
