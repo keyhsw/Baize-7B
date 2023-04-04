@@ -17,7 +17,7 @@ base_model = "decapoda-research/llama-7b-hf"
 adapter_model = "project-baize/baize-lora-7B"
 tokenizer,model,device = load_tokenizer_and_model(base_model,adapter_model)
 
-
+total_cont = 0
 def predict(text,
             chatbot,
             history,
@@ -43,7 +43,8 @@ def predict(text,
         begin_length = len(prompt)
     torch.cuda.empty_cache()
     input_ids = inputs["input_ids"].to(device)
-
+    total_cont += 1
+    print(total_cont)
     with torch.no_grad():
         for x in greedy_search(input_ids,model,tokenizer,stop_words=["[|Human|]", "[|AI|]"],max_length=max_length_tokens,temperature=temperature,top_p=top_p):
             if is_stop_word_or_prefix(x,["[|Human|]", "[|AI|]"]) is False:
@@ -221,4 +222,4 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
     #)    
 demo.title = "Baize"
 
-demo.queue(concurrency_count=1,).launch()
+demo.queue(concurrency_count=2).launch()
