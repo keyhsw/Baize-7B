@@ -362,3 +362,4 @@ def load_tokenizer_and_model(base_model,adapter_model,load_8bit=False):
 
     model.eval()
     return tokenizer,model,device
+
