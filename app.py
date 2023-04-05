@@ -4,6 +4,7 @@ import logging
 import sys
 import gradio as gr
 import torch
+import gc
 from app_modules.utils import *
 from app_modules.presets import *
 from app_modules.overwrites import *
@@ -53,7 +54,7 @@ def predict(text,
                     x = x[:x.index("[|Human|]")].strip()
                 if "[|AI|]" in x:
                     x = x[:x.index("[|AI|]")].strip() 
-                x = x.strip(" ")   
+                x = x.strip()   
                 a, b=   [[y[0],convert_to_markdown(y[1])] for y in history]+[[text, convert_to_markdown(x)]],history + [[text,x]]
                 yield a, b, "Generating..."
             if shared_state.interrupted:
@@ -63,6 +64,8 @@ def predict(text,
                     return
                 except:
                     pass
+    del input_ids
+    gc.collect()
     torch.cuda.empty_cache()
     #print(text)
     #print(x)
