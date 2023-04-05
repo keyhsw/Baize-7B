@@ -13,6 +13,7 @@ import html
 import markdown2
 import torch 
 import sys
+import gc
 from pygments.lexers import guess_lexer, ClassNotFound
 
 import gradio as gr
@@ -255,34 +256,41 @@ def greedy_search(input_ids: torch.Tensor,
             logits = outputs.logits[:, -1, :]
             past_key_values = outputs.past_key_values
 
-        # apply temperature
-        logits /= temperature
-
-        probs = torch.softmax(logits, dim=-1)
-        # apply top_p
-        probs_sort, probs_idx = torch.sort(probs, dim=-1, descending=True)
-        probs_sum = torch.cumsum(probs_sort, dim=-1)
-        mask = probs_sum - probs_sort > top_p
-        probs_sort[mask] = 0.0
-
-        # apply top_k
-        #if top_k is not None:
-        #    probs_sort1, _ = torch.topk(probs_sort, top_k)
-        #    min_top_probs_sort = torch.min(probs_sort1, dim=-1, keepdim=True).values
-        #    probs_sort = torch.where(probs_sort < min_top_probs_sort, torch.full_like(probs_sort, float(0.0)), probs_sort)
-
-        probs_sort.div_(probs_sort.sum(dim=-1, keepdim=True))
-        next_token = torch.multinomial(probs_sort, num_samples=1)
-        next_token = torch.gather(probs_idx, -1, next_token)
-
-        input_ids = torch.cat((input_ids, next_token), dim=-1)
-
-        generated_tokens.append(next_token[0].item())
-        text = tokenizer.decode(generated_tokens)
-
-        yield text
-        if any([x in text for x in stop_words]):
-            return 
+            # apply temperature
+            logits /= temperature
+    
+            probs = torch.softmax(logits, dim=-1)
+            # apply top_p
+            probs_sort, probs_idx = torch.sort(probs, dim=-1, descending=True)
+            probs_sum = torch.cumsum(probs_sort, dim=-1)
+            mask = probs_sum - probs_sort > top_p
+            probs_sort[mask] = 0.0
+    
+            # apply top_k
+            #if top_k is not None:
+            #    probs_sort1, _ = torch.topk(probs_sort, top_k)
+            #    min_top_probs_sort = torch.min(probs_sort1, dim=-1, keepdim=True).values
+            #    probs_sort = torch.where(probs_sort < min_top_probs_sort, torch.full_like(probs_sort, float(0.0)), probs_sort)
+    
+            probs_sort.div_(probs_sort.sum(dim=-1, keepdim=True))
+            next_token = torch.multinomial(probs_sort, num_samples=1)
+            next_token = torch.gather(probs_idx, -1, next_token)
+    
+            input_ids = torch.cat((input_ids, next_token), dim=-1)
+    
+            generated_tokens.append(next_token[0].item())
+            text = tokenizer.decode(generated_tokens)
+    
+            yield text
+            if any([x in text for x in stop_words]):
+                del past_key_values
+                del logits
+                del probs
+                del probs_sort
+                del probs_idx
+                del probs_sum
+                gc.collect()
+                return 
 
 def generate_prompt_with_history(text,history,tokenizer,max_length=2048):
     prompt = "The following is a conversation between a human and an AI assistant named Baize (named after a mythical creature in Chinese folklore). Baize is an open-source AI assistant developed by UCSD and Sun Yat-Sen University. The human and the AI assistant take turns chatting. Human statements start with [|Human|] and AI assistant statements start with [|AI|]. The AI assistant always provides responses in as much detail as possible, and in Markdown format. The AI assistant always declines to engage with topics, questions and instructions related to unethical, controversial, or sensitive issues. Complete the transcript in exactly that format.\n[|Human|]Hello!\n[|AI|]Hi!"   
