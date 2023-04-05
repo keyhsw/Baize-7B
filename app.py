@@ -47,6 +47,8 @@ def predict(text,
     global total_count
     total_count += 1
     print(total_count)
+    if total_count % 50 == 0 :
+        os.system("nvidia-smi")
     with torch.no_grad():
         for x in greedy_search(input_ids,model,tokenizer,stop_words=["[|Human|]", "[|AI|]"],max_length=max_length_tokens,temperature=temperature,top_p=top_p):
             if is_stop_word_or_prefix(x,["[|Human|]", "[|AI|]"]) is False:
