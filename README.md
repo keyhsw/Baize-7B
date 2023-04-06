@@ -1,6 +1,6 @@
 ---
 title: Baize 7B
-emoji: 🐢
+emoji: 🐲
 colorFrom: green
 colorTo: yellow
 sdk: gradio
