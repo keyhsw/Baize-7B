@@ -1,5 +1,5 @@
 ---
-title: Baize Lora 7B
+title: Baize 7B
 emoji: 🐢
 colorFrom: green
 colorTo: yellow
