@@ -33,7 +33,7 @@ ol:not(.options), ul:not(.options) {
     padding-inline-start: 2em !important;
 }
 
-/* 亮色 */
+/* Light Mode */
 @media (prefers-color-scheme: light) {
     #chuanhu_chatbot {
         background-color: var(--chatbot-color-light) !important;
@@ -45,27 +45,27 @@ ol:not(.options), ul:not(.options) {
         background-color: #95EC69 !important;
     }
 }
-/* 暗色 */
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
-    #chuanhu_chatbot {
+    .dark #chuanhu_chatbot {
         background-color: var(--chatbot-color-dark) !important;
     }
-    [data-testid = "bot"] {
+    .dark [data-testid = "bot"] {
         background-color: #2C2C2C !important;
     }
-    [data-testid = "user"] {
+    .dark [data-testid = "user"] {
         background-color: #26B561 !important;
     }
     body {
         background-color: var(--neutral-950) !important;
     }
 }
-/* 屏幕宽度大于等于500px的设备 */
+
 #chuanhu_chatbot {
-        height: 100%;
-        min-height: 400px;
-    }
-/* 对话气泡 */
+    height: 100%;
+    min-height: 400px;
+}
+
 [class *= "message"] {
     border-radius: var(--radius-xl) !important;
     border: none;
@@ -84,7 +84,7 @@ ol:not(.options), ul:not(.options) {
     width: auto !important;
     border-bottom-right-radius: 0 !important;
 }
-/* 表格 */
+/* Table */
 table {
     margin: 1em 0;
     border-collapse: collapse;
@@ -100,7 +100,7 @@ thead {
 thead th {
     padding: .5em .2em;
 }
-/* 行内代码 */
+/* Inline code */
 code {
     display: inline;
     white-space: break-spaces;
@@ -109,7 +109,7 @@ code {
     padding: .2em .4em .1em .4em;
     background-color: rgba(175,184,193,0.2);
 }
-/* 代码块 */
+/* Code block */
 pre code {
     display: block;
     overflow: auto;
@@ -121,7 +121,7 @@ pre code {
     color: #FFF;
     box-shadow: 6px 6px 16px hsla(0, 0%, 0%, 0.2);
 }
-/* 代码高亮样式 */
+/* Hightlight */
 .highlight .hll { background-color: #49483e }
 .highlight .c { color: #75715e } /* Comment */
 .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
