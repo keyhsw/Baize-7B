@@ -33,32 +33,29 @@ ol:not(.options), ul:not(.options) {
     padding-inline-start: 2em !important;
 }
 
-/* Light Mode */
-@media (prefers-color-scheme: light) {
-    #chuanhu_chatbot {
-        background-color: var(--chatbot-color-light) !important;
-    }
-    [data-testid = "bot"] {
-        background-color: #FFFFFF !important;
-    }
-    [data-testid = "user"] {
-        background-color: #95EC69 !important;
-    }
+/* Thank @Keldos-Li for fixing it */
+/* Light mode (default) */
+#chuanhu_chatbot {
+    background-color: var(--chatbot-color-light) !important;
+    color: #000000 !important;
 }
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-    .dark #chuanhu_chatbot {
-        background-color: var(--chatbot-color-dark) !important;
-    }
-    .dark [data-testid = "bot"] {
-        background-color: #2C2C2C !important;
-    }
-    .dark [data-testid = "user"] {
-        background-color: #26B561 !important;
-    }
-    body {
-        background-color: var(--neutral-950) !important;
-    }
+[data-testid = "bot"] {
+    background-color: #FFFFFF !important;
+}
+[data-testid = "user"] {
+    background-color: #95EC69 !important;
+}
+
+/* Dark mode */
+.dark #chuanhu_chatbot {
+    background-color: var(--chatbot-color-dark) !important;
+    color: #FFFFFF !important;
+}
+.dark [data-testid = "bot"] {
+    background-color: #2C2C2C !important;
+}
+.dark [data-testid = "user"] {
+    background-color: #26B561 !important;
 }
 
 #chuanhu_chatbot {
